@@ -36,7 +36,7 @@ export class Game {
     }
 
     enemyTurn = () => {
-        // TODO
+        this.enemy.attack(this.player);
     }
 
     battleFinished = () => {
