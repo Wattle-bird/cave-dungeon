@@ -8,6 +8,5 @@ export class PuppetCreature extends Creature {
     constructor(game: Game) {
         super(game);
         this.initStats();
-        console.log(this.currentHp);
     }
 }
