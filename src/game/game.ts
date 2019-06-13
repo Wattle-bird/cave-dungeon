@@ -41,7 +41,7 @@ export class Game {
     }
 
     enemyTurn = () => {
-        this.enemy.attack(this.player);
+        this.enemy.enemyTurn();
     }
 
     battleFinished = () => {
@@ -55,7 +55,7 @@ export class Game {
     statusMessage = () => {
         this.messageBox.showText(
 `You: ${this.player.name}
-HP: ${this.player.currentHp}/${this.player.maxHp}`
+HP: ${Math.floor(this.player.currentHp)}/${this.player.maxHp}`
         );
         this.messageBox.showText(
 `Enemy: ${this.enemy.name}

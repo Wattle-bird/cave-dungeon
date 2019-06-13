@@ -5,13 +5,14 @@ export abstract class Creature {
     currentHp = 0;
     name = 'UNNAMED';
     attackDamage = 0;
+    attackVariance = 0;
     defeated = false;
     actions: CreatureAction[];
 
 
     constructor(protected game: Game) {
         this.actions = [
-            {name: 'attack', action: this.attack}
+            {name: 'Attack', action: this.attack}
         ];
     }
 
@@ -21,7 +22,8 @@ export abstract class Creature {
 
     attack = (target: Creature) => {
         this.game.messageBox.showText(`${this.name} attacks ${target.name}`);
-        target.takeDamage(this.attackDamage);
+        const damage = this.attackDamage + this.attackVariance * Math.random();
+        target.takeDamage(damage);
     }
 
     takeDamage = (damage: number) => {
@@ -37,6 +39,11 @@ export abstract class Creature {
         const fullness = this.currentHp / this.maxHp;
         const percentage = Math.ceil(fullness * 10) * 10;
         return `${percentage}%`;
+    }
+
+    enemyTurn = (): void => {
+        const actionIndex = Math.floor(Math.random() * this.actions.length);
+        (this.actions[actionIndex].action)(this.game.player);
     }
 
 }

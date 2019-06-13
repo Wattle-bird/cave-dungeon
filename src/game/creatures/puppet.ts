@@ -5,10 +5,8 @@ export class PuppetCreature extends Creature {
     name = "Puppet";
     maxHp = 10;
 
-    get attackDamage() {
-        return 2.5 + Math.random();
-    }
-    set attackDamage(_) {}
+    attackDamage = 2;
+    attackVariance = 2;
 
     constructor(game: Game) {
         super(game);
