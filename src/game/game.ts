@@ -1,5 +1,5 @@
 import { MessageAction, MessageBox } from "src/game/messageBox";
-import { Creature } from './creature';
+import { Creature, CreatureAction } from './creature';
 import { PuppetCreature } from './creatures/puppet';
 import { RatCreature } from './creatures/rat';
 
@@ -28,11 +28,16 @@ export class Game {
     }
 
     playerTurn = async () => {
-        const attack: MessageAction = {
-            text: 'Attack',
-            callback: () => this.player.attack(this.enemy)
-        };
-        await this.messageBox.prompt([attack]);
+        const messageActions: MessageAction[] = [];
+
+        for (const action of this.player.actions) {
+            messageActions.push({
+                text: action.name,
+                callback: () => action.action(this.enemy)
+            });
+        }
+
+        await this.messageBox.prompt(messageActions);
     }
 
     enemyTurn = () => {
