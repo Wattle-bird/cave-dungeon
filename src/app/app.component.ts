@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MessageLine, MessageBox } from '../game/messageBox';
+import { Game } from 'src/game/game';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'cave-dungeon';
+  game: Game;
+  messageBox = new MessageBox();
+
+  constructor() {
+    this.game = new Game(this.messageBox);
+  }
 }

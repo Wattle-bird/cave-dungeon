@@ -1,0 +1,9 @@
+*, button {
+    font-size: 26px;
+    font-family: monospace;
+    padding: 5px;
+}
+
+pre {
+    margin: 0;
+}
