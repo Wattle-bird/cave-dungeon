@@ -19,7 +19,9 @@ export abstract class Creature {
     }
 
     takeDamage = (damage: number) => {
-        this.currentHp -= damage;
+        const roundedDamage = Math.ceil(damage);
+        this.game.messageBox.showText(`${this.name} takes ${roundedDamage} damage`);
+        this.currentHp -= roundedDamage;
         if (this.currentHp <= 0) {
             this.game.messageBox.showText(`${this.name} is defeated!`);
             this.currentHp = 0;
