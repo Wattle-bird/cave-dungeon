@@ -18,13 +18,14 @@ class SnoozeAction implements BattleAction {
 export class RatCreature extends Creature {
     name = "Rat";
     maxHp = 6;
+    actions = [
+        new RatAttackAction(),
+        new SnoozeAction()
+    ];
+
 
     constructor(game: Game) {
         super(game);
-        this.actions = [
-            new RatAttackAction(),
-            new SnoozeAction()
-        ];
         this.initStats();
     }
 }

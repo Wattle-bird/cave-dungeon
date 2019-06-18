@@ -6,9 +6,12 @@ export class BasicAttackAction implements BattleAction {
     baseDamage = 1;
     damageVariance = 0;
 
-    doAction(user: Creature, target: Creature, baseDamage?: number, damageVariance?: number) {
+    constructor(baseDamage?: number, damageVariance?: number) {
         this.baseDamage = baseDamage || this.baseDamage;
         this.damageVariance = damageVariance || this.damageVariance;
+    }
+
+    doAction(user: Creature, target: Creature) {
         target.takeDamage(this.baseDamage + Math.random() * this.damageVariance);
         return [`${user.name} attacks ${target.name}`];
     }

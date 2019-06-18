@@ -1,6 +1,7 @@
 import { Creature } from './creature';
 import { Game } from '../game';
 import { BattleAction } from '../battleActions/battleAction';
+import { BasicAttackAction } from '../battleActions/basicAttackAction';
 
 class FocusAction implements BattleAction {
     name: 'Focus';
@@ -13,12 +14,13 @@ class FocusAction implements BattleAction {
 export class BearCreature extends Creature {
     name = "Bear";
     maxHp = 15;
-    attackDamage = 3;
-    attackVariance = 4;
+    actions = [
+        new BasicAttackAction(3, 4),
+        new FocusAction()
+    ];
 
     constructor(game: Game) {
         super(game);
-        this.actions.push(new FocusAction());
         this.initStats();
     }
 }

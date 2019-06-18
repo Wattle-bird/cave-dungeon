@@ -1,12 +1,13 @@
 import { Creature } from "./creature";
 import { Game } from '../game';
+import { BasicAttackAction } from '../battleActions/basicAttackAction';
 
 export class PuppetCreature extends Creature {
     name = "Puppet";
     maxHp = 10;
-
-    attackDamage = 2;
-    attackVariance = 2;
+    actions = [
+        new BasicAttackAction(2, 2)
+    ];
 
     constructor(game: Game) {
         super(game);
