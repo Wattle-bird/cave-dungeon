@@ -7,8 +7,11 @@ export abstract class Creature {
     currentHp = 0;
     attackMultiplier = 1;
     name = 'UNNAMED';
-    defeated = false;
     actions: BattleAction[];
+
+    get defeated() {
+        return this.currentHp <= 0;
+    }
 
     constructor(public game: Game) {
         this.actions = [new BasicAttackAction(game)];
@@ -25,7 +28,6 @@ export abstract class Creature {
         if (this.currentHp <= 0) {
             this.game.messageBox.showText(`${this.name} is defeated!`);
             this.currentHp = 0;
-            this.defeated = true;
         }
     }
 

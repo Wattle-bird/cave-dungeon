@@ -52,7 +52,6 @@ export class Game {
 
     doHeal = async () => {
         this.player.currentHp = this.player.maxHp;
-        this.player.defeated = false;
         this.messageBox.showText(`${this.player.name} is fully healed`);
     }
 
