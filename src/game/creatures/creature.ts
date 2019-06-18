@@ -7,10 +7,10 @@ export abstract class Creature {
     currentHp = 0;
     name = 'UNNAMED';
     defeated = false;
-    actions: BattleAction[] = [new BasicAttackAction()];
-
+    actions: BattleAction[];
 
     constructor(public game: Game) {
+        this.actions = [new BasicAttackAction(game)];
     }
 
     initStats = () => {
@@ -32,9 +32,9 @@ export abstract class Creature {
         return `${percentage}%`;
     }
 
-    enemyTurn = (): string[] => {
+    enemyTurn = () => {
         const actionIndex = Math.floor(Math.random() * this.actions.length);
-        return this.actions[actionIndex].doAction(this, this.game.player);
+        this.actions[actionIndex].doAction(this, this.game.player);
     }
 
 }
