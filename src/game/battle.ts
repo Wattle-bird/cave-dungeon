@@ -33,7 +33,7 @@ export class Battle {
     statusMessage = () => {
         this.game.messageBox.showText(
 `You: ${this.player.name}
-HP: ${Math.floor(this.player.currentHp)}/${this.player.maxHp}`
+HP: ${Math.ceil(this.player.currentHp)}/${this.player.maxHp}`
         );
         this.game.messageBox.showText(
 `Enemy: ${this.enemy.name}

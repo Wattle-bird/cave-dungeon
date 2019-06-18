@@ -15,6 +15,7 @@ export class BasicAttackAction extends BattleAction {
 
     doAction(user: Creature, target: Creature) {
         this.game.messageBox.showText(`${user.name} attacks ${target.name}`);
-        target.takeDamage(this.baseDamage + Math.random() * this.damageVariance);
+        const damage = (this.baseDamage + Math.random() * this.damageVariance) * user.attackMultiplier;
+        target.takeDamage(damage);
     }
 }

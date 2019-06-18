@@ -6,7 +6,7 @@ import { BasicAttackAction } from '../battleActions/basicAttackAction';
 class FocusAction extends BattleAction {
     name: 'Focus';
     doAction(user: Creature, _) {
-        // TODO raise attack mult
+        user.attackMultiplier *= 1.2;
         this.game.messageBox.showText(`${user.name} sharpens its focus. Its attack damage rises!`);
     }
 }
