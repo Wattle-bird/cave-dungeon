@@ -10,7 +10,10 @@ export class Game {
     battle: Battle;
 
     constructor(public messageBox: MessageBox) {
-        this.doGame().catch( err => alert(err) );
+        this.doGame().catch( err => {
+            alert(err);
+            throw err;
+         });
     }
 
     doGame = async () => {

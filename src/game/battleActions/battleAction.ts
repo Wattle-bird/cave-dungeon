@@ -1,7 +1,12 @@
 import { Creature } from '../creatures/creature';
+import { Game } from '../game';
 
-export interface BattleAction {
+export class BattleAction {
     name: string;
-    doAction(user: Creature, target: Creature): string[];
 
+    constructor(protected game: Game) {}
+
+    doAction(user: Creature, target: Creature): void {
+        this.game.messageBox.showText(`${user.name} does UNDEFINED`);
+    }
 }

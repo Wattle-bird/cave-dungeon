@@ -8,24 +8,23 @@ class RatAttackAction extends BasicAttackAction {
     damageVariance = 1;
 }
 
-class SnoozeAction implements BattleAction {
+class SnoozeAction extends BattleAction {
     name: 'Snooze';
     doAction(user: Creature, _) {
-        return [`${user.name} snoozes and snores...`];
+        this.game.messageBox.showText(`${user.name} snoozes and snores...`);
     }
 }
 
 export class RatCreature extends Creature {
     name = "Rat";
     maxHp = 6;
-    actions = [
-        new RatAttackAction(),
-        new SnoozeAction()
-    ];
-
 
     constructor(game: Game) {
         super(game);
+        this.actions = [
+            new RatAttackAction(game),
+            new SnoozeAction(game)
+        ];
         this.initStats();
     }
 }

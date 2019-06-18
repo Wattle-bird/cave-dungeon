@@ -51,20 +51,12 @@ HP: ${this.enemy.getHpFuzzyText()}`
             });
         }
 
-        const chosen: BattleAction = await this.game.messageBox.prompt(messageActions);
-        const textLines = chosen.doAction(this.player, this.enemy);
-
-        for (const line of textLines) {
-            this.game.messageBox.showText(line);
-        }
+        const chosenAction: BattleAction = await this.game.messageBox.prompt(messageActions);
+        chosenAction.doAction(this.player, this.enemy);
     }
 
     enemyTurn = () => {
-        const textLines = this.enemy.enemyTurn();
-
-        for (const line of textLines) {
-            this.game.messageBox.showText(line);
-        }
+        this.enemy.enemyTurn();
     }
 
     battleFinished = () => {
