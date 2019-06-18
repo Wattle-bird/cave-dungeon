@@ -1,4 +1,4 @@
-import { Creature } from './creature';
+import { Creature } from './creatures/creature';
 import { MessageAction } from './messageBox';
 import { Game } from './game';
 

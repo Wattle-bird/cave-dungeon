@@ -1,4 +1,4 @@
-import { Game } from './game';
+import { Game } from '../game';
 
 export abstract class Creature {
     maxHp = 1;

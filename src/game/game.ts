@@ -1,8 +1,9 @@
 import { MessageBox } from "src/game/messageBox";
-import { Creature } from './creature';
+import { Creature } from './creatures/creature';
 import { PuppetCreature } from './creatures/puppet';
 import { RatCreature } from './creatures/rat';
 import { Battle, BattleResult } from './battle';
+import { BearCreature } from './creatures/bear';
 
 export class Game {
     player: Creature;
@@ -15,7 +16,7 @@ export class Game {
     doGame = async () => {
         this.startupMessage();
         this.initData();
-        this.battle = new Battle(this, new RatCreature(this));
+        this.battle = new Battle(this, new BearCreature(this));
         const result = await this.battle.doBattle();
         if (result === BattleResult.WON) {
             this.messageBox.showText('You won!');
