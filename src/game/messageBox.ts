@@ -6,11 +6,11 @@ export interface MessageLineText {
 export interface MessageLinePrompt {
     type: 'prompt';
     actions: MessageAction[];
-    resolve: () => void;
+    resolve: (value: any) => void;
 }
 export interface MessageAction {
     text: string;
-    callback(): void;
+    value: any;
 }
 
 export interface MessageLineBreak {
@@ -34,7 +34,7 @@ export class MessageBox {
     }
 
     async prompt(actions: MessageAction[]) {
-        return new Promise((resolve: () => void) => {
+        return new Promise((resolve: (value: any) => void) => {
         this.messageLines.push({type: 'prompt', actions, resolve});
         });
     }

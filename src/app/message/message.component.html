@@ -1,7 +1,7 @@
 <li *ngIf="messageLine.type == 'text'" class="message-text"><pre>{{ text }}</pre></li>
 <ng-container *ngIf="messageLine.type == 'prompt'">
   <li *ngFor="let action of actions" class="message-button">
-    <button (click)="doAction(action)">{{action.text}}</button>
+    <button (click)="makeSelection(action)">{{action.text}}</button>
   </li>
 </ng-container>
 <li *ngIf="messageLine.type == 'break'" class="message-break">

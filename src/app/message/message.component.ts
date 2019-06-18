@@ -22,10 +22,9 @@ export class MessageComponent implements OnInit {
     return (this.messageLine as MessageLinePrompt).actions;
   }
 
-  doAction(action: MessageAction) {
+  makeSelection(action: MessageAction) {
     this.hideButtons();
-    action.callback();
-    (this.messageLine as MessageLinePrompt).resolve();
+    (this.messageLine as MessageLinePrompt).resolve(action.value);
   }
 
   hideButtons() {

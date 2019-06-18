@@ -1,6 +1,7 @@
 import { Creature } from './creatures/creature';
 import { MessageAction } from './messageBox';
 import { Game } from './game';
+import { BattleAction } from './battleActions/battleAction';
 
 export enum BattleResult {
     WON,
@@ -46,15 +47,24 @@ HP: ${this.enemy.getHpFuzzyText()}`
         for (const action of this.player.actions) {
             messageActions.push({
                 text: action.name,
-                callback: () => action.action(this.enemy)
+                value: action
             });
         }
 
-        await this.game.messageBox.prompt(messageActions);
+        const chosen: BattleAction = await this.game.messageBox.prompt(messageActions);
+        const textLines = chosen.doAction(this.player, this.enemy);
+
+        for (const line of textLines) {
+            this.game.messageBox.showText(line);
+        }
     }
 
     enemyTurn = () => {
-        this.enemy.enemyTurn();
+        const textLines = this.enemy.enemyTurn();
+
+        for (const line of textLines) {
+            this.game.messageBox.showText(line);
+        }
     }
 
     battleFinished = () => {

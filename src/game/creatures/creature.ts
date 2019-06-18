@@ -1,29 +1,20 @@
 import { Game } from '../game';
+import { BattleAction } from '../battleActions/battleAction';
+import { BasicAttackAction } from '../battleActions/basicAttackAction';
 
 export abstract class Creature {
     maxHp = 1;
     currentHp = 0;
     name = 'UNNAMED';
-    attackDamage = 0;
-    attackVariance = 0;
     defeated = false;
-    actions: CreatureAction[];
+    actions: BattleAction[] = [new BasicAttackAction()];
 
 
-    constructor(protected game: Game) {
-        this.actions = [
-            {name: 'Attack', action: this.attack}
-        ];
+    constructor(public game: Game) {
     }
 
     initStats = () => {
         this.currentHp = this.maxHp;
-    }
-
-    attack = (target: Creature) => {
-        this.game.messageBox.showText(`${this.name} attacks ${target.name}`);
-        const damage = this.attackDamage + this.attackVariance * Math.random();
-        target.takeDamage(damage);
     }
 
     takeDamage = (damage: number) => {
@@ -41,14 +32,9 @@ export abstract class Creature {
         return `${percentage}%`;
     }
 
-    enemyTurn = (): void => {
+    enemyTurn = (): string[] => {
         const actionIndex = Math.floor(Math.random() * this.actions.length);
-        (this.actions[actionIndex].action)(this.game.player);
+        return this.actions[actionIndex].doAction(this, this.game.player);
     }
 
-}
-
-export interface CreatureAction {
-    name: string;
-    action: (target: Creature) => void;
 }
