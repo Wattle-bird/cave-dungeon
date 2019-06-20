@@ -22,7 +22,7 @@ export abstract class Creature {
     }
 
     takeDamage = (damage: number) => {
-        const roundedDamage = Math.ceil(damage);
+        const roundedDamage = Math.round(damage);
         this.game.messageBox.showText(`${this.name} takes ${roundedDamage} damage`);
         this.currentHp -= roundedDamage;
         if (this.currentHp <= 0) {
