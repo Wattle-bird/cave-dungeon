@@ -27,15 +27,24 @@ export class MessageBox {
 
     show(messageLine: MessageLine) {
         this.messageLines.push(messageLine);
+        // delay to let the page render
+        setTimeout(this.scrollToBottom, 1);
     }
 
     showText(text: string) {
-        this.messageLines.push({type: 'text', text});
+        this.show({type: 'text', text});
     }
 
     async prompt(actions: MessageAction[]) {
         return new Promise((resolve: (value: any) => void) => {
-        this.messageLines.push({type: 'prompt', actions, resolve});
+            this.show({type: 'prompt', actions, resolve});
+        });
+    }
+
+    scrollToBottom = () => {
+        window.scrollTo({
+            top: document.body.scrollHeight,
+            behavior: 'smooth'
         });
     }
 }
