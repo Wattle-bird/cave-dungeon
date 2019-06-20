@@ -4,6 +4,7 @@ import { PuppetCreature } from './creatures/puppet';
 import { Battle, BattleResult } from './battle';
 import { BearCreature } from './creatures/bear';
 import { RatCreature } from './creatures/rat';
+import { BearHollowDungeon } from './bearHollowDungeon';
 
 export class Game {
     player: Creature;
@@ -27,6 +28,9 @@ export class Game {
     doMainMenu = async () => {
         const choices: MessageAction[] = [
             {
+                text: 'Challenge the Bear Hollow',
+                value: this.doBearHollow
+            }, {
                 text: 'Battle a rat',
                 value: this.doBattleRat
             }, {
@@ -72,5 +76,9 @@ export class Game {
         } else {
             this.messageBox.showText('You lost...');
         }
+    }
+
+    doBearHollow = async () => {
+        await new BearHollowDungeon(this).doDungeon();
     }
 }
