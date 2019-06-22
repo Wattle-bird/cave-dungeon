@@ -44,8 +44,8 @@ export class BearCreature extends Creature {
         super(game);
         this.statuses = [
             new BasicAttackAction(game, 3, 4),
-            // new FocusAction(game),
-            new Accuracy(game, 0.5)
+            new FocusAction(game),
+            new Accuracy(game)
         ];
         this.initStats();
     }
