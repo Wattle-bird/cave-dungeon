@@ -8,8 +8,11 @@ class RatAttackAction extends BasicAttackAction {
     damageVariance = 1;
 }
 
-class SnoozeAction extends Status {
+class SnoozeAction implements Status {
     name: 'Snooze';
+
+    constructor(private game: Game) {}
+
     doAction(user: Creature, _) {
         this.game.messageBox.showText(`${user.name} snoozes and snores...`);
     }

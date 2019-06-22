@@ -3,8 +3,11 @@ import { Game } from '../game';
 import { Status } from '../statuses/status';
 import { BasicAttackAction } from '../statuses/basicAttackAction';
 
-class FocusAction extends Status {
+class FocusAction implements Status {
     name: 'Focus';
+
+    constructor(private game: Game) {}
+
     doAction(user: Creature, _) {
         user.attackMultiplier *= 1.2;
         this.game.messageBox.showText(`${user.name} sharpens its focus. Its attack damage rises!`);

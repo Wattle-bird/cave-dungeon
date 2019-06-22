@@ -2,13 +2,12 @@ import { Status } from './status';
 import { Creature } from '../creatures/creature';
 import { Game } from '../game';
 
-export class BasicAttackAction extends Status {
+export class BasicAttackAction implements Status {
     name = 'Attack';
     baseDamage = 1;
     damageVariance = 0;
 
-    constructor(game: Game, baseDamage?: number, damageVariance?: number) {
-        super(game);
+    constructor(private game: Game, baseDamage?: number, damageVariance?: number) {
         this.baseDamage = baseDamage || this.baseDamage;
         this.damageVariance = damageVariance || this.damageVariance;
     }
