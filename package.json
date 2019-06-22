@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "upload": "npm run build && git add docs/ && git commit -m 'build'; git push"
+    "publish": "npm run build && git add docs/ && git commit -m 'build'; git push"
   },
   "private": true,
   "dependencies": {
