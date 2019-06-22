@@ -1,3 +1,5 @@
+import { delay } from './util';
+
 export interface MessageLineText {
     type: 'text';
     text: string;
@@ -20,15 +22,30 @@ export interface MessageLineBreak {
 export type MessageLine = MessageLineText | MessageLinePrompt | MessageLineBreak;
 
 export class MessageBox {
+    readonly MESSAGE_DELAY = 1500;
     messageLines: MessageLine[] = [];
+    incomingMessages: MessageLine[] = [];
+    processing = false;
 
     constructor() {
     }
 
+    async processMessages() {
+        this.processing = true;
+        while (this.incomingMessages.length >= 1) {
+            this.messageLines.push(this.incomingMessages.shift());
+            // delay to let the page render
+            setTimeout(this.scrollToBottom, 1);
+            await delay(this.MESSAGE_DELAY);
+        }
+        this.processing = false;
+    }
+
     show(messageLine: MessageLine) {
-        this.messageLines.push(messageLine);
-        // delay to let the page render
-        setTimeout(this.scrollToBottom, 1);
+        this.incomingMessages.push(messageLine);
+        if (!this.processing) {
+            this.processMessages().catch();
+        }
     }
 
     showText(text: string) {
