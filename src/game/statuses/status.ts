@@ -1,7 +1,7 @@
 import { Creature } from '../creatures/creature';
 import { Game } from '../game';
 
-export class BattleAction {
+export class Status {
     name: string;
 
     constructor(protected game: Game) {}

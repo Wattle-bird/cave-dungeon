@@ -1,9 +1,9 @@
 import { Creature } from './creature';
 import { Game } from '../game';
-import { BattleAction } from '../battleActions/battleAction';
-import { BasicAttackAction } from '../battleActions/basicAttackAction';
+import { Status } from '../statuses/status';
+import { BasicAttackAction } from '../statuses/basicAttackAction';
 
-class FocusAction extends BattleAction {
+class FocusAction extends Status {
     name: 'Focus';
     doAction(user: Creature, _) {
         user.attackMultiplier *= 1.2;
@@ -17,7 +17,7 @@ export class BearCreature extends Creature {
 
     constructor(game: Game) {
         super(game);
-        this.actions = [
+        this.statuses = [
             new BasicAttackAction(game, 3, 4),
             new FocusAction(game)
         ];

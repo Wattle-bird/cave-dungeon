@@ -1,8 +1,8 @@
-import { BattleAction } from './battleAction';
+import { Status } from './status';
 import { Creature } from '../creatures/creature';
 import { Game } from '../game';
 
-export class BasicAttackAction extends BattleAction {
+export class BasicAttackAction extends Status {
     name = 'Attack';
     baseDamage = 1;
     damageVariance = 0;

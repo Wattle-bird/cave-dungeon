@@ -1,20 +1,20 @@
 import { Game } from '../game';
-import { BattleAction } from '../battleActions/battleAction';
-import { BasicAttackAction } from '../battleActions/basicAttackAction';
+import { Status } from '../statuses/status';
+import { BasicAttackAction } from '../statuses/basicAttackAction';
 
 export abstract class Creature {
     maxHp = 1;
     currentHp = 0;
     attackMultiplier = 1;
     name = 'UNNAMED';
-    actions: BattleAction[];
+    statuses: Status[];
 
     get defeated() {
         return this.currentHp <= 0;
     }
 
     constructor(public game: Game) {
-        this.actions = [new BasicAttackAction(game)];
+        this.statuses = [new BasicAttackAction(game)];
     }
 
     initStats = () => {
@@ -38,8 +38,9 @@ export abstract class Creature {
     }
 
     enemyTurn = () => {
-        const actionIndex = Math.floor(Math.random() * this.actions.length);
-        this.actions[actionIndex].doAction(this, this.game.player);
+        const actions = this.statuses.filter(status => !!status.doAction);
+        const actionIndex = Math.floor(Math.random() * actions.length);
+        actions[actionIndex].doAction(this, this.game.player);
     }
 
 }

@@ -1,7 +1,7 @@
 import { Creature } from './creatures/creature';
 import { MessageAction } from './messageBox';
 import { Game } from './game';
-import { BattleAction } from './battleActions/battleAction';
+import { Status } from './statuses/status';
 
 export enum BattleResult {
     WON,
@@ -44,14 +44,14 @@ HP: ${this.enemy.getHpFuzzyText()}`
     playerTurn = async () => {
         const messageActions: MessageAction[] = [];
 
-        for (const action of this.player.actions) {
+        for (const action of this.player.statuses) {
             messageActions.push({
                 text: action.name,
                 value: action
             });
         }
 
-        const chosenAction: BattleAction = await this.game.messageBox.prompt(messageActions);
+        const chosenAction: Status = await this.game.messageBox.prompt(messageActions);
         chosenAction.doAction(this.player, this.enemy);
     }
 

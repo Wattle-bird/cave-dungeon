@@ -1,14 +1,14 @@
 import { Creature } from './creature';
 import { Game } from '../game';
-import { BasicAttackAction } from '../battleActions/basicAttackAction';
-import { BattleAction } from '../battleActions/battleAction';
+import { BasicAttackAction } from '../statuses/basicAttackAction';
+import { Status } from '../statuses/status';
 
 class RatAttackAction extends BasicAttackAction {
     baseDamage = 1;
     damageVariance = 1;
 }
 
-class SnoozeAction extends BattleAction {
+class SnoozeAction extends Status {
     name: 'Snooze';
     doAction(user: Creature, _) {
         this.game.messageBox.showText(`${user.name} snoozes and snores...`);
@@ -21,7 +21,7 @@ export class RatCreature extends Creature {
 
     constructor(game: Game) {
         super(game);
-        this.actions = [
+        this.statuses = [
             new RatAttackAction(game),
             new SnoozeAction(game)
         ];

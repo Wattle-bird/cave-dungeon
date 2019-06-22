@@ -1,6 +1,6 @@
 import { Creature } from "./creature";
 import { Game } from '../game';
-import { BasicAttackAction } from '../battleActions/basicAttackAction';
+import { BasicAttackAction } from '../statuses/basicAttackAction';
 
 export class PuppetCreature extends Creature {
     name = "Puppet";
@@ -8,7 +8,7 @@ export class PuppetCreature extends Creature {
 
     constructor(game: Game) {
         super(game);
-        this.actions = [
+        this.statuses = [
             new BasicAttackAction(game, 2, 2)
         ];
         this.initStats();
