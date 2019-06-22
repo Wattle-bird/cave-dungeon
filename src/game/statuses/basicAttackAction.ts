@@ -15,6 +15,6 @@ export class BasicAttackAction implements Status {
     doAction(user: Creature, target: Creature) {
         this.game.messageBox.showText(`${user.name} attacks ${target.name}`);
         const damage = (this.baseDamage + Math.random() * this.damageVariance) * user.attackMultiplier;
-        target.takeDamage(damage);
+        user.sendEffect(damage, target);
     }
 }

@@ -1,12 +1,13 @@
 import { Game } from '../game';
 import { Status } from '../statuses/status';
 import { BasicAttackAction } from '../statuses/basicAttackAction';
+import { Effect } from '../effect';
 
 export abstract class Creature {
     maxHp = 1;
     currentHp = 0;
     attackMultiplier = 1;
-    name = 'UNNAMED';
+    abstract name: string;
     statuses: Status[];
 
     get defeated() {
@@ -21,7 +22,7 @@ export abstract class Creature {
         this.currentHp = this.maxHp;
     }
 
-    takeDamage = (damage: number) => {
+    recieveEffect = (damage: Effect) => {
         const roundedDamage = Math.round(damage);
         this.game.messageBox.showText(`${this.name} takes ${roundedDamage} damage`);
         this.currentHp -= roundedDamage;
@@ -35,6 +36,14 @@ export abstract class Creature {
         const fullness = this.currentHp / this.maxHp;
         const percentage = Math.ceil(fullness * 10) * 10;
         return `${percentage}%`;
+    }
+
+    sendEffect = (effect: Effect, target: Creature) => {
+        const modifiers = this.statuses.filter(status => !!status.modifyOutgoingEffect);
+        for (const modifier of modifiers) {
+            effect = modifier.modifyOutgoingEffect(this, effect);
+        }
+        target.recieveEffect(effect);
     }
 
     enemyTurn = () => {

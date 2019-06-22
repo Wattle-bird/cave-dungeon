@@ -2,6 +2,7 @@ import { Creature } from './creature';
 import { Game } from '../game';
 import { Status } from '../statuses/status';
 import { BasicAttackAction } from '../statuses/basicAttackAction';
+import { Effect } from '../effect';
 
 class FocusAction implements Status {
     name: 'Focus';
@@ -14,6 +15,27 @@ class FocusAction implements Status {
     }
 }
 
+class Accuracy implements Status {
+    get name() {
+        const percent = Math.round(this.accuracy * 100);
+        return `${percent}% Accuracy`;
+    }
+
+    accuracy = 0.7;
+
+    constructor(private game: Game, accuracy?: number) {
+        this.accuracy = accuracy || this.accuracy;
+    }
+
+    modifyOutgoingEffect(creature: Creature, effect: Effect): Effect {
+        if (Math.random() > this.accuracy) {
+            this.game.messageBox.showText('But it missed!');
+            return 0;
+        }
+        return effect;
+    }
+}
+
 export class BearCreature extends Creature {
     name = "Bear";
     maxHp = 15;
@@ -22,7 +44,8 @@ export class BearCreature extends Creature {
         super(game);
         this.statuses = [
             new BasicAttackAction(game, 3, 4),
-            new FocusAction(game)
+            // new FocusAction(game),
+            new Accuracy(game, 0.5)
         ];
         this.initStats();
     }

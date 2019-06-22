@@ -22,7 +22,7 @@ export interface MessageLineBreak {
 export type MessageLine = MessageLineText | MessageLinePrompt | MessageLineBreak;
 
 export class MessageBox {
-    readonly MESSAGE_DELAY = 1500;
+    readonly MESSAGE_DELAY = 1000;
     messageLines: MessageLine[] = [];
     incomingMessages: MessageLine[] = [];
     processing = false;
