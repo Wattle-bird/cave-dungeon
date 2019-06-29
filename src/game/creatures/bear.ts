@@ -5,7 +5,7 @@ import { BasicAttackAction } from '../statuses/basicAttackAction';
 import { Effect } from '../effect';
 
 class FocusStatus implements Status {
-    name: 'Attack Boost x1.2';
+    name = 'Attack Boost x1.2';
 
     constructor(private game: Game) {}
 
@@ -15,7 +15,7 @@ class FocusStatus implements Status {
 }
 
 class FocusAction implements Status {
-    name: 'Focus';
+    name = 'Focus';
 
     constructor(private game: Game) {}
 
