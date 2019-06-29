@@ -1,6 +1,7 @@
 import { Status } from './status';
 import { Creature } from '../creatures/creature';
 import { Game } from '../game';
+import { Effect } from '../effect';
 
 export class BasicAttackAction implements Status {
     name = 'Attack';
@@ -15,6 +16,6 @@ export class BasicAttackAction implements Status {
     doAction(user: Creature, target: Creature) {
         this.game.messageBox.showText(`${user.name} attacks ${target.name}`);
         const damage = (this.baseDamage + Math.random() * this.damageVariance);
-        user.sendEffect(damage, target);
+        user.sendEffect(new Effect().withDamage(damage), target);
     }
 }

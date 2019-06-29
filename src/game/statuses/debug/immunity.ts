@@ -9,7 +9,7 @@ export class DebugImmunityStatus implements Status {
     constructor(private game: Game) {}
 
     modifyIncomingEffect(effect: Effect, receiver: Creature) {
-        this.game.messageBox.showText(`> Effect Damage: ${effect}`);
-        return 0;
+        this.game.messageBox.showText(`> Effect Damage: ${effect.damage}`);
+        return new Effect();
     }
 }

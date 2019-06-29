@@ -10,7 +10,8 @@ class FocusStatus implements Status {
     constructor(private game: Game) {}
 
     modifyOutgoingEffect(effect: Effect, creature: Creature) {
-        return effect * 1.2;
+        effect.damage *= 1.2;
+        return effect;
     }
 }
 
@@ -40,7 +41,7 @@ class Accuracy implements Status {
     modifyOutgoingEffect(effect: Effect, creature: Creature): Effect {
         if (Math.random() > this.accuracy) {
             this.game.messageBox.showText('But it missed!');
-            return 0;
+            return new Effect();
         }
         return effect;
     }

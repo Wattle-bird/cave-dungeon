@@ -28,8 +28,12 @@ export abstract class Creature {
             effect = modifier.modifyIncomingEffect(effect, this);
         }
 
-        // damage
-        const roundedDamage = Math.round(effect);
+        this.recieveEffectDamage(effect);
+    }
+
+    recieveEffectDamage = (effect: Effect) => {
+        const damage = effect.damage;
+        const roundedDamage = Math.round(damage);
         this.game.messageBox.showText(`${this.name} takes ${roundedDamage} damage`);
         this.currentHp -= roundedDamage;
 
@@ -37,6 +41,7 @@ export abstract class Creature {
             this.game.messageBox.showText(`${this.name} is defeated!`);
             this.currentHp = 0;
         }
+
     }
 
     getHpFuzzyText = (): string => {
