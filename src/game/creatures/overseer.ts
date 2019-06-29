@@ -3,6 +3,7 @@ import { Game } from '../game';
 import { BasicAttackAction } from '../statuses/basicAttackAction';
 import { DebugImmunityStatus } from '../statuses/debug/immunity';
 import { DebugDumpSelfAction } from '../statuses/debug/dumpSelf';
+import { DebugAnnihilateAction } from '../statuses/debug/annihilate';
 
 export class DebugOverseerCreature extends Creature {
     name = 'Overseer';
@@ -13,6 +14,7 @@ export class DebugOverseerCreature extends Creature {
             new BasicAttackAction(game),
             new DebugImmunityStatus(game),
             new DebugDumpSelfAction(game),
+            new DebugAnnihilateAction(game),
         ];
         this.initStats();
     }
