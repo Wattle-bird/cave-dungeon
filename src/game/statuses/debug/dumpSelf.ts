@@ -8,6 +8,8 @@ export class DebugDumpSelfAction implements Status {
     constructor(private game: Game) {}
 
     doAction(user: Creature, target: Creature) {
+        console.log(user);
+
         this.game.messageBox.showText('> Statuses:');
         for (const status of user.statuses) {
             this.game.messageBox.showText(` > ${status.name}`);

@@ -87,6 +87,7 @@ export class Game {
     }
 
     doDebugMode = async () => {
+        this.messageBox.messageDelayMs = 100;
         this.player = new DebugOverseerCreature(this);
     }
 }

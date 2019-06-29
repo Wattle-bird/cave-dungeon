@@ -8,6 +8,8 @@ export class DebugDumpTargetAction implements Status {
     constructor(private game: Game) {}
 
     doAction(user: Creature, target: Creature) {
+        console.log(target);
+
         this.game.messageBox.showText(`> HP: ${target.currentHp}/${target.maxHp}`);
 
         this.game.messageBox.showText('> Statuses:');
