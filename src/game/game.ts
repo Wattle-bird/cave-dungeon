@@ -12,6 +12,7 @@ export class Game {
     battle: Battle;
 
     constructor(public messageBox: MessageBox) {
+        (window as any).game = this;
         this.doGame().catch( err => {
             alert(err);
             throw err;
