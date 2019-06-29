@@ -44,7 +44,9 @@ HP: ${this.enemy.getHpFuzzyText()}`
     playerTurn = async () => {
         const messageActions: MessageAction[] = [];
 
-        for (const action of this.player.statuses) {
+        const actions = this.player.statuses.filter(s => !!s.doAction);
+
+        for (const action of actions) {
             messageActions.push({
                 text: action.name,
                 value: action
