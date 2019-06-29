@@ -6,7 +6,7 @@ import { Game } from '../game';
 class TemplateStatus implements Status {
     name = 'TODO';
 
-    // constructor (private game: Game) {} // TODO
+    constructor(private game: Game) {}
 
     // doAction(user: Creature, target: Creature) {
     //     // TODO
