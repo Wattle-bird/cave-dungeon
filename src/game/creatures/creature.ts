@@ -6,7 +6,6 @@ import { Effect } from '../effect';
 export abstract class Creature {
     maxHp = 1;
     currentHp = 0;
-    attackMultiplier = 1;
     abstract name: string;
     statuses: Status[];
 
