@@ -12,7 +12,7 @@ export class TemplateStatus implements Status {
     //     // TODO
     // }
 
-    // modifyOutgoingEffect(creature: Creature, effect: Effect) {
+    // modifyOutgoingEffect(effect: Effect, user: Creature) {
     //     // TODO
     //     return effect;
     // }

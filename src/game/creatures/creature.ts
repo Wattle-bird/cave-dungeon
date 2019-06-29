@@ -48,7 +48,7 @@ export abstract class Creature {
     sendEffect = (effect: Effect, target: Creature) => {
         const modifiers = this.statuses.filter(status => !!status.modifyOutgoingEffect);
         for (const modifier of modifiers) {
-            effect = modifier.modifyOutgoingEffect(this, effect);
+            effect = modifier.modifyOutgoingEffect(effect, this);
         }
         target.recieveEffect(effect);
     }
