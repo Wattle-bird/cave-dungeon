@@ -5,6 +5,7 @@ import { Battle, BattleResult } from './battle';
 import { BearCreature } from './creatures/bear';
 import { RatCreature } from './creatures/rat';
 import { BearHollowDungeon } from './bearHollowDungeon';
+import { DebugOverseerCreature } from './creatures/overseer';
 
 export class Game {
     player: Creature;
@@ -39,6 +40,9 @@ export class Game {
             }, {
                 text: 'Heal',
                 value: this.doHeal
+            }, {
+                text: 'Debug Mode',
+                value: this.doDebugMode
             }
         ];
 
@@ -80,5 +84,9 @@ export class Game {
 
     doBearHollow = async () => {
         await new BearHollowDungeon(this).doDungeon();
+    }
+
+    doDebugMode = async () => {
+        this.player = new DebugOverseerCreature(this);
     }
 }
