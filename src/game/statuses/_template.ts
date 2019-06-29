@@ -3,7 +3,7 @@ import { Creature } from '../creatures/creature';
 import { Effect } from '../effect';
 import { Game } from '../game';
 
-class TemplateStatus implements Status {
+export class TemplateStatus implements Status {
     name = 'TODO';
 
     constructor(private game: Game) {}
