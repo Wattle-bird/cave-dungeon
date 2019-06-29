@@ -9,7 +9,7 @@ class RatAttackAction extends BasicAttackAction {
 }
 
 class SnoozeAction implements Status {
-    name: 'Snooze';
+    name = 'Snooze';
 
     constructor(private game: Game) {}
 
