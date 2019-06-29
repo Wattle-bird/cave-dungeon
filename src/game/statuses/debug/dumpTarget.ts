@@ -14,7 +14,7 @@ export class DebugDumpTargetAction implements Status {
 
         this.game.messageBox.showText('> Statuses:');
         for (const status of target.statuses) {
-            this.game.messageBox.showText(` > ${status.name}`);
+            this.game.messageBox.showText(`    > ${status.name}`);
         }
     }
 }

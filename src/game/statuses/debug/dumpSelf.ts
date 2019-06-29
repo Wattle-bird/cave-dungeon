@@ -12,7 +12,7 @@ export class DebugDumpSelfAction implements Status {
 
         this.game.messageBox.showText('> Statuses:');
         for (const status of user.statuses) {
-            this.game.messageBox.showText(` > ${status.name}`);
+            this.game.messageBox.showText(`    > ${status.name}`);
         }
     }
 }
