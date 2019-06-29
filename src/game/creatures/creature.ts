@@ -21,10 +21,18 @@ export abstract class Creature {
         this.currentHp = this.maxHp;
     }
 
-    recieveEffect = (damage: Effect) => {
-        const roundedDamage = Math.round(damage);
+    recieveEffect = (effect: Effect) => {
+        // modifiers
+        const modifiers = this.statuses.filter(status => !!status.modifyIncomingEffect);
+        for (const modifier of modifiers) {
+            effect = modifier.modifyIncomingEffect(effect, this);
+        }
+
+        // damage
+        const roundedDamage = Math.round(effect);
         this.game.messageBox.showText(`${this.name} takes ${roundedDamage} damage`);
         this.currentHp -= roundedDamage;
+
         if (this.currentHp <= 0) {
             this.game.messageBox.showText(`${this.name} is defeated!`);
             this.currentHp = 0;

@@ -6,5 +6,8 @@ export interface Status {
 
     doAction?(user: Creature, target: Creature): void;
 
+    // TODO refactor like below
     modifyOutgoingEffect?(creature: Creature, effect: Effect): Effect;
+
+    modifyIncomingEffect?(effect: Effect, receiver: Creature): Effect;
 }

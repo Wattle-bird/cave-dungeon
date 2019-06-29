@@ -14,6 +14,11 @@ class TemplateStatus implements Status {
 
     // modifyOutgoingEffect(creature: Creature, effect: Effect) {
     //     // TODO
-    //     return null;
+    //     return effect;
+    // }
+
+    // modifyIncomingEffect(effect: Effect, receiver: Creature) {
+    //     // TODO
+    //     return effect;
     // }
 }
