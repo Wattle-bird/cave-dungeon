@@ -6,6 +6,7 @@ import { BearCreature } from './creatures/bear';
 import { RatCreature } from './creatures/rat';
 import { BearHollowDungeon } from './bearHollowDungeon';
 import { DebugOverseerCreature } from './creatures/overseer';
+import { CrystalCaves } from './crystalCaves';
 
 export class Game {
     player: Creature;
@@ -30,6 +31,9 @@ export class Game {
     doMainMenu = async () => {
         const choices: MessageAction[] = [
             {
+                text: 'Challenge the Crystal Caves',
+                value: this.doCrystalCaves
+            }, {
                 text: 'Challenge the Bear Hollow',
                 value: this.doBearHollow
             }, {
@@ -90,5 +94,10 @@ export class Game {
     doDebugMode = async () => {
         this.messageBox.messageDelayMs = 100;
         this.player = new DebugOverseerCreature(this);
+    }
+
+    doCrystalCaves = async () => {
+        const crystalCaves = new CrystalCaves(this);
+        await crystalCaves.doDungeon();
     }
 }
