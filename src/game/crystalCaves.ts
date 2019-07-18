@@ -3,6 +3,10 @@ import { RatCreature } from './creatures/rat';
 import { Creature } from './creatures/creature';
 import { Battle, BattleResult } from './battle';
 
+////////////////////////////////////
+// TODO DELETE THIS
+////////////////////////////////////
+
 export class CrystalCaves {
     readonly INTRO =
 `Welcome to the Crystal Caves!
