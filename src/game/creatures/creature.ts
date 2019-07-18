@@ -2,6 +2,7 @@ import { Game } from '../game';
 import { Status } from '../statuses/status';
 import { BasicAttackAction } from '../statuses/basicAttackAction';
 import { Effect } from '../effect';
+import { pickRandom } from '../util';
 
 export abstract class Creature {
     maxHp = 1;
@@ -60,8 +61,7 @@ export abstract class Creature {
 
     enemyTurn = () => {
         const actions = this.statuses.filter(status => !!status.doAction);
-        const actionIndex = Math.floor(Math.random() * actions.length);
-        actions[actionIndex].doAction(this, this.game.player);
+        pickRandom(actions).doAction(this, this.game.player);
     }
 
 }

@@ -3,17 +3,7 @@ import { Game } from '../game';
 import { Status } from '../statuses/status';
 import { BasicAttackAction } from '../statuses/basicAttackAction';
 import { Effect } from '../effect';
-
-class FocusStatus implements Status {
-    name = 'Attack Boost x1.2';
-
-    constructor(private game: Game) {}
-
-    modifyOutgoingEffect(effect: Effect, creature: Creature) {
-        effect.damage *= 1.2;
-        return effect;
-    }
-}
+import { AttackBoost1p2Status } from '../statuses/attackBoost1p2';
 
 class FocusAction implements Status {
     name = 'Focus';
@@ -22,7 +12,7 @@ class FocusAction implements Status {
 
     doAction(user: Creature, _) {
         this.game.messageBox.showText(`${user.name} sharpens its focus. Its attack damage rises!`);
-        user.statuses.push(new FocusStatus(this.game));
+        user.statuses.push(new AttackBoost1p2Status(this.game));
     }
 }
 
