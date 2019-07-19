@@ -19,10 +19,12 @@ export class Battle {
         while (true) {
             this.statusMessage();
             await this.playerTurn();
+            this.player.doAfterTurn();
             if (this.battleFinished()) {
                 break;
             }
             this.enemyTurn();
+            this.enemy.doAfterTurn();
             if (this.battleFinished()) {
                 break;
             }

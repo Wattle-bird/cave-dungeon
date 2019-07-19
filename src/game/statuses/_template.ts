@@ -21,4 +21,8 @@ export class TemplateStatus implements Status {
     //     // TODO
     //     return effect;
     // }
+
+    // doAfterTurn(creature: Creature): void {
+    //     // TODO
+    // }
 }

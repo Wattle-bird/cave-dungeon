@@ -9,4 +9,6 @@ export interface Status {
     modifyOutgoingEffect?(effect: Effect, user: Creature): Effect;
 
     modifyIncomingEffect?(effect: Effect, receiver: Creature): Effect;
+
+    doAfterTurn?(creature: Creature): void;
 }

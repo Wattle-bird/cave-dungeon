@@ -59,6 +59,13 @@ export abstract class Creature {
         target.recieveEffect(effect);
     }
 
+    doAfterTurn = () => {
+        const statuses = this.statuses.filter(s => !!s.doAfterTurn);
+        for (const status of statuses) {
+            status.doAfterTurn(this);
+        }
+    }
+
     enemyTurn = () => {
         const actions = this.statuses.filter(status => !!status.doAction);
         pickRandom(actions).doAction(this, this.game.player);
